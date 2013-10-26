@@ -228,17 +228,17 @@ class Parse:
     elif (self.remain[0][1]== 'for'):
       self.accept(self.remain[0][0])
       self.accept('LEFT_P')
-      self.expression()
-      self.accept('END_STATEMENT')
-      self.expression()
-      self.accept('END_STATEMENT')
-      self.expression()
-      self.accept('RIGTH_P')
-      if(self.statement()):
-        self.accept('END_STATEMENT')
+      if (self.expression()):
+         self.accept('END_STATEMENT')
+         if (self.expression()):
+            self.accept('END_STATEMENT')
+            if (self.expression()):
+               self.accept('RIGTH_P')
+               if(self.statement()):
+                  self.accept('END_STATEMENT')
     elif(self.reamin[0][1]== 'return'):
-        self.expression()
-        self.accept('END_STATEMENT')    
+        if (self.expression()):
+           self.accept ('END_STATEMENT')    
 
 
   def expression(self):
